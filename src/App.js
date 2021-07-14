@@ -19,6 +19,26 @@ class App extends Component {
     filter: "",
   };
 
+  componentDidMount() {
+    // console.log("componentDidMount");
+    const contactsFromLocalStorage = localStorage.getItem("contacts");
+    // console.log(contactsFromLocalStorage);
+    const parsedContactsFromLocalStorage = JSON.parse(contactsFromLocalStorage);
+    console.log(parsedContactsFromLocalStorage);
+    if (parsedContactsFromLocalStorage) {
+      this.setState({ contacts: parsedContactsFromLocalStorage });
+    }
+    // const contacts =
+  }
+
+  componentDidUpdate(prevProps, prevState) {
+    // console.log("componentDidUpdate");
+    if (this.state.contacts !== prevState.contacts) {
+      console.log("Обновилося поле contacts");
+      localStorage.setItem("contacts", JSON.stringify(this.state.contacts));
+    }
+  }
+
   handleChangeInput = (e) => {
     this.setState({
       [e.target.name]: e.target.value,

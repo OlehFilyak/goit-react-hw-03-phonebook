@@ -2,8 +2,10 @@ import PropTypes from "prop-types";
 function PhoneBookListItem({ id, name, number, onDeleteContact }) {
   return (
     <li key={id}>
-      <p>Name: {name}</p>
-      <p>Number: {number}</p>
+      <div>
+        <p className="ContactName">Name: {name}</p>
+        <p>Number: {number}</p>
+      </div>
       <button onClick={onDeleteContact} id={id}>
         Delete
       </button>
